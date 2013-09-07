@@ -32,10 +32,18 @@ jQuery(document).ready( function(){
 			var secretCode = encodeURIComponent($('input[name="aws_secret"]').val());
 			var bucket = $('input[name="aws_bucket"]').val();
 			ajaxUrl += '&access='+accessCode+'&secret='+secretCode+'&bucket_name='+bucket;
-		} else if ( typeData == "cf" ){			
-			var username = $('input[name="cf_username"]').val(); 
-			var apiKey = $('input[name="cf_apikey"]').val();
-			var container = $('input[name="cf_container"]').val();
+		} else if ( (typeData == "cf") || (typeData == "clodo") ){	
+			if(typeData == 'clodo')
+			{
+				_t = 'clodo';
+			}
+			else
+			{
+				_t = 'cf';
+			}
+			var username = $('input[name="' + _t + '_username"]').val(); 
+			var apiKey = $('input[name="' + _t + '_apikey"]').val();
+			var container = $('input[name="' + _t + '_container"]').val();
 			ajaxUrl += '&username='+username+'&apikey='+apiKey+'&container='+container;
 		}
 		
